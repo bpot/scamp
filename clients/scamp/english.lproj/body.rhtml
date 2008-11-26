@@ -1,0 +1,53 @@
+<% content_for('body') do %>
+  <% split_view :workspace, :class => 'sc-app-workspace', :direction => :vertical do %>
+    <% view :status, :outlet => true do %>
+      <%= label_view :sartist, :content_value_key => 'text', :bind => {:value => "Scamp.statusController.artist"} %> -
+      <%= label_view :stitle, :content_value_key => 'text', :bind => {:value => "Scamp.statusController.title"} %><br/>
+      Time: <%= label_view :stimle, :content_value_key => 'text', :bind => {:value => "Scamp.statusController.time"} %><br/>
+      Bitrate: <%= label_view :bitrate, :content_value_key => 'text', :bind => {:value => "Scamp.statusController.bitrate"} %>
+    <% end %>
+
+    <%= split_divider_view :outlet => true, :width => 5 %>
+    
+    <% split_view :not_status, :can_collapse => false, :min_thickness => 150, :direction => :vertical do %>
+      <%# view :middle do %>
+        <% split_view :artist_split, :can_collapse => false do %>
+          <%# view :artists, :can_collapse => false do %>
+            <% scroll_view :artist_list, :outlet => true do %>
+              <%= list_view :artist_real_list, :outlet => true,
+                :content_value_key => 'name',
+                :bind => {
+                  :content => 'Scamp.artistController.arrangedObjects',
+                  :selection => 'Scamp.artistController.selection'
+              }
+                %>
+            <% end %>
+          <%# end %>
+          <%= split_divider_view :outlet => true, :width => 5 %>
+          <%# view :albums, :can_collapse => false do %>
+            <% scroll_view :album_list, :outlet => true do %>
+              <%= list_view :album_real_list,:outlet => true,
+                :content_value_key => 'title',
+                :view => 'Scamp.AlbumListView',
+                :bind => {
+                  :content => 'Scamp.albumController.arrangedObjects',
+                  :selection => 'Scamp.albumController.selection'
+                } %>
+            <% end %>
+          <%# end %>
+        <% end %>
+      <%# end %>
+      <% view :sidebar, :can_collapse => false do %>
+        <% scroll_view :master_list, :outlet => true do %>
+          <%= list_view :outlet => true,
+            :content_value_key => 'artist_song',
+            :view => 'Scamp.PlaylistListView',
+            :bind => {
+                  :content => 'Scamp.playlistController.arrangedObjects',
+                  :selection => 'Scamp.playlistController.selection'
+            } %>
+        <% end %>
+     <% end %>
+    <% end %>
+  <% end %>
+<% end %>

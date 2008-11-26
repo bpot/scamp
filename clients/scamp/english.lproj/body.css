@@ -1,0 +1,57 @@
+/* @group For Tutorial */
+
+body {
+ position: absolute ;
+ left: 0;
+ right: 0;
+ top: 0;
+ bottom: 0;
+ padding: 0;
+ margin: 0;
+ overflow: hidden ;
+}
+
+/*.workspace .sidebar {
+ position: absolute;
+ left:  0;
+ top:  0;
+ width: 500px;
+ bottom: 0;
+}*/
+
+.workspace .master_list {
+ position: absolute;
+ left:  0;
+ top:  0;
+ right: 0;
+ bottom: 0;
+}
+
+.workspace .artist_list {
+ position: absolute;
+ left:  0;
+ top:  0;
+ right: 0;
+ bottom: 0;
+
+}
+
+.workspace .album_list {
+ position: absolute;
+ left:  0;
+ top:  0;
+ right: 0;
+ bottom: 0;
+
+}
+
+/*.workspace .sc-split-divider-view {
+ position: absolute;
+ left: 500px;
+ top: 0;
+ bottom: 0;
+}*/
+
+
+/* @end */
+
