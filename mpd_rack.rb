@@ -38,7 +38,7 @@ class MPDRack
     end
   end
   def connect
-    @mpd = MPD.new('bpot.dyndns.org', 6600)
+    @mpd = MPD.new(MPD_HOST,MPD_PORT)
     @mpd.connect
   end
   def add_album(data)
