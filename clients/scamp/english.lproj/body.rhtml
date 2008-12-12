@@ -5,6 +5,8 @@
       <%= label_view :stitle, :content_value_key => 'text', :bind => {:value => "Scamp.statusController.title"} %><br/>
       Time: <%= label_view :stimle, :content_value_key => 'text', :bind => {:value => "Scamp.statusController.time"} %><br/>
       Bitrate: <%= label_view :bitrate, :content_value_key => 'text', :bind => {:value => "Scamp.statusController.bitrate"} %>
+      <%= button_view :update_button, :title => 'Update Database', :action => 'Scamp.statusController.updateDatabase' %>
+      <%= button_view :update_button, :title => '', :action => 'Scamp.statusController.togglePlay' %>
     <% end %>
 
     <%= split_divider_view :outlet => true, :width => 5 %>

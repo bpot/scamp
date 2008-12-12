@@ -17,16 +17,16 @@ Scamp.Status = SC.Record.extend(
   dataSource: Scamp.server,
   resourceURL: 'sc/status',
 
-  properties: ['guid','bitrate','state','songid','time'],
+  properties: ['guid','bitrate','state','songid','time','song'],
   primaryKey: 'guid',
     
 
   title: function() {
-    return Scamp.Playlist.find(this.get('songid')).get('title');
-  }.property('songid'),
+    return Scamp.Playlist.find(this.get('song')).get('title');
+  }.property('song'),
 
   artist: function() {
-    return Scamp.Playlist.find(this.get('songid')).get('artist');
-  }.property('songid'),
+    return Scamp.Playlist.find(this.get('song')).get('artist');
+  }.property('song'),
 
 }) ;

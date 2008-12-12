@@ -44,10 +44,13 @@ function main() {
     Scamp.server.listFor({
       recordType: Scamp.Album});
 
-  // TODO: Set the content property on your primary controller
-  // ex: Scamp.contactsController.set('content',Scamp.contacts);
-  // var col = Scamp.Status.collection(); 
- //  col.dataSource = Scamp.server; 
+    Scamp._refreshStatusTimer = SC.Timer.schedule({
+      action: 'Scamp._refreshStatus',
+      //interval: 60000,
+      interval: 1000000,
+      repeats: YES
+      });
+
     Scamp.server.listFor({
       recordType: Scamp.Status,
       callback: function() {
@@ -57,9 +60,10 @@ function main() {
 
     Scamp._refreshTimer = SC.Timer.schedule({
       action: 'Scamp._refreshStuff',
-      interval: 30000,
+      //interval: 60000,
+      interval: 10000,
       repeats: YES
-      });
+   });
 
 
     //col.dataSource = Scamp.server;

@@ -17,15 +17,15 @@ Scamp.Playlist = SC.Record.extend(
   dataSource: Scamp.server,
   resourceURL: 'sc/playlist',
 
-  properties: ['guid','artist','title','pos'],
+  properties: ['guid','artist','title','pos','id'],
   primaryKey: 'guid',
   artist_song: function() {
-    if(Scamp.statusController.get('songid') == this.get('guid')) {
-      return this.get('artist') + " - " + this.get('title') + "(NOW PLAYING!!!)";
+    if(Scamp.statusController.get('song') == this.get('pos')) {
+      return this.get('pos') + " - " + Scamp.statusController.get('song') + " - " + this.get('artist') + " - " + this.get('title') + "(NOW PLAYING!!!)";
     } else {
-      return this.get('artist') + " - " + this.get('title');
+      return  this.get('pos') + " - " + Scamp.statusController.get('song') + " - " + this.get('artist') + " - " + this.get('title');
     }
-  }.property('artist','title'),
+  }.property('artist','title','Scamp.statusController.song'),
 
   // TODO: Add your own code here.
 
