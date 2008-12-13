@@ -3,7 +3,7 @@ require 'librmpd'
 require 'rack'
 require 'json'
 require 'digest/sha2'
-MPD_HOST='play.b-pot.org'
+MPD_HOST='localhost'
 MPD_PORT=6600
 # This is pretty ugly, but gets the job done for now....
 class MPDRack
@@ -20,25 +20,25 @@ class MPDRack
   private
   def handle_path(env)
     case env["PATH_INFO"]
-    when /\/sc\/playlist/
+    when /\/playlist/
       playlist = @mpd.playlist
       return {:records => playlist.collect{|p| p.merge(:guid => (1+p["pos"].to_i).to_s, "pos" => (1+p["pos"].to_i).to_i)}.sort_by{|a| a["pos"]}, :ids => playlist.collect{|p| (1+p["pos"].to_i).to_s}}.to_json
-    when /\/sc\/status/
+    when /\/status/
       status = @mpd.status
       return {:records => [status.merge(:guid => "1", "songid" => status["songid"].to_s)], :ids => ["1"]}.to_json
-    when /\/sc\/artists/
+    when /\/artists/
       artists = @mpd.artists.collect{|a| {:name => a, :guid => guid_from_string(a)}}
-      r = {:records => artists, :ids => artists.collect{|p| p["guid"]}}.to_json
+      r = {:records => artists, :ids => artists.collect{|p| p[:guid]}}.to_json
       return r
-    when /\/sc\/albums/
+    when /\/albums/
       albums = get_albums
-      r = {:records => albums, :ids => albums.collect{|p| p["guid"].to_s}}.to_json
+      r = {:records => albums, :ids => albums.collect{|p| p[:guid].to_s}}.to_json
       return r
-    when /\/sc\/add_album\/(.*)/
+    when /\/add_album\/(.*)/
       add_album($1)
-    when /\/sc\/play\/(.*)/
+    when /\/play\/(.*)/
       play($1)
-    when /\/sc\/refresh/
+    when /\/refresh/
       update_database
     else
       p "Fell thrhough"

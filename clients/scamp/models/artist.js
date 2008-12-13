@@ -17,7 +17,7 @@ Scamp.Artist = SC.Record.extend(
 
   // TODO: Add your own code here.
   dataSource: Scamp.server,
-  resourceURL: 'sc/artists',
+  resourceURL: '/sc/artists',
 
   properties: ['guid','name'],
   primaryKey: 'guid',

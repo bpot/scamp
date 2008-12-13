@@ -15,7 +15,7 @@ require('core');
 Scamp.Playlist = SC.Record.extend(
 /** @scope Scamp.Playlist.prototype */ {
   dataSource: Scamp.server,
-  resourceURL: 'sc/playlist',
+  resourceURL: '/sc/playlist',
 
   properties: ['guid','artist','title','pos','id'],
   primaryKey: 'guid',

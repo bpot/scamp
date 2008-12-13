@@ -15,7 +15,7 @@ require('core');
 Scamp.Status = SC.Record.extend(
 /** @scope Scamp.Status.prototype */ {
   dataSource: Scamp.server,
-  resourceURL: 'sc/status',
+  resourceURL: '/sc/status',
 
   properties: ['guid','bitrate','state','songid','time','song'],
   primaryKey: 'guid',
